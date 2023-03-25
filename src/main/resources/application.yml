@@ -1,1 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/telegram-bot-translator
+    username: postgres
+    password: Iissupe5
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+
+bot:
+  name: translator_bot_spring
+  token:
+
+webHookPath: https://940a-109-69-74-39.eu.ngrok.io
 
