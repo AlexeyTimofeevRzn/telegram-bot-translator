@@ -1,17 +1,21 @@
 package ru.timofeev.projects.telegrambottranslator.config;
 
-import lombok.Data;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration
-@Data
+import lombok.Getter;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component
+@Getter
 public class BotConfig {
 
-    @Value("${bot.name}")
-    String name;
+    @Value("${telegram.bot.webHookPath")
+    String webHookPath;
 
-    @Value("${bot.token}")
-    String token;
+    @Value("${telegram.bot.name}")
+    String botName;
+
+    @Value("${telegram.bot.token}")
+    String botToken;
 
 }
