@@ -1,27 +1,32 @@
 package ru.timofeev.projects.telegrambottranslator.bot;
 
 import lombok.AccessLevel;
-import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
-import org.telegram.telegrambots.bots.TelegramWebhookBot;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
+import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.starter.SpringWebhookBot;
 
-@Component
-@Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class TranslatorBot extends TelegramWebhookBot {
+public class TranslatorBot extends SpringWebhookBot {
     String webHookPath;
     String botUserName;
     String botToken;
 
-    public TranslatorBot(DefaultBotOptions options) {
-        super(options);
+    public TranslatorBot(DefaultBotOptions options, SetWebhook setWebhook) {
+        super(options, setWebhook);
+    }
+
+    public TranslatorBot(SetWebhook setWebhook) {
+        super(setWebhook);
+    }
+
+    @Override
+    public String getBotToken() {
+        return this.botToken;
     }
 
     @Override
@@ -31,12 +36,12 @@ public class TranslatorBot extends TelegramWebhookBot {
 
     @Override
     public String getBotPath() {
-        return webHookPath;
+        return this.webHookPath;
     }
 
     @Override
     public String getBotUsername() {
-        return botUserName;
+        return this.botUserName;
     }
 
     @Override
@@ -44,8 +49,4 @@ public class TranslatorBot extends TelegramWebhookBot {
         super.onRegister();
     }
 
-    @Override
-    public String getBotToken() {
-        return botToken;
-    }
 }
